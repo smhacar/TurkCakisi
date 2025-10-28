@@ -1,9 +1,36 @@
-import React from "react";
+import React, { useState } from "react";
 
 const TextProcessing = () => {
+  const [text, setText] = useState("");
+
+  const toUpper = () => {
+    setText(text.toUpperCase());
+  };
+  const toLower = () => {
+    setText(text.toLowerCase());
+  };
+  const characterLength = () => {
+    alert(text.length);
+  };
+  const removeSpaces = () => {
+    setText(text.replace(/\s+/g, "").trim());
+  };
+  const reverseText = () => {
+    setText(text.split("").reverse().join(""));
+  };
+  const copyText = () => {
+    navigator.clipboard.writeText(text);
+  }
+  const getLoremIpsumText = () =>{
+    setText(`Lorem Ipsum, kısaca Lipsum, masaüstü yayıncılık ve basın yayın sektöründe kullanılan taklit yazı bloku olarak tanımlanır.`)
+  }
+  const cleanTextArea = () =>{
+    setText("");
+  }
+
   return (
     <div>
-      <div class="container mt-4">
+      <div class="container mt-2">
         <div class="row justify-content-center">
           <div class="col-md-12">
             <div class="card text-center">
@@ -16,116 +43,82 @@ const TextProcessing = () => {
                     class="form-control"
                     id="exampleFormControlTextarea1"
                     rows="8"
+                    value={text}
+                    onChange={(e) => setText(e.target.value)}
                   ></textarea>
                 </div>
-                <div class="row g-3 mb-4">
+                <div class="row g-3 mb-2">
                   <div class="col">
-                    <a
-                      href="/text-processing"
+                    <button
                       class="btn btn-secondary btn-lg w-100"
-                      role="button"
-                      aria-pressed="true"
+                      onClick={toUpper}
                     >
                       BÜYÜK HARF
-                    </a>
+                    </button>
                   </div>
                   <div class="col">
-                    <a
-                      href="/text-processing"
+                    <button
                       class="btn btn-secondary btn-lg w-100"
-                      role="button"
-                      aria-pressed="true"
+                      onClick={toLower}
                     >
                       küçük harf
-                    </a>
+                    </button>
                   </div>
                   <div class="col">
-                    <a
-                      href="/text-processing"
+                    <button
                       class="btn btn-secondary btn-lg w-100"
-                      role="button"
-                      aria-pressed="true"
+                      onClick={characterLength}
                     >
                       Karakter Say
-                    </a>
+                    </button>
                   </div>
                 </div>
-                <div class="row g-3 mb-4">
+
+                <div class="row g-3 mb-2">
                   <div class="col">
-                    <a
-                      href="/text-processing"
+                    <button
                       class="btn btn-secondary btn-lg w-100"
-                      role="button"
-                      aria-pressed="true"
-                    >
-                      Kelime Say
-                    </a>
-                  </div>
-                  <div class="col">
-                    <a
-                      href="/text-processing"
-                      class="btn btn-secondary btn-lg w-100"
-                      role="button"
-                      aria-pressed="true"
-                    >
-                      Cümle / Paragraf
-                    </a>
-                  </div>
-                  <div class="col">
-                    <a
-                      href="/text-processing"
-                      class="btn btn-secondary btn-lg w-100"
-                      role="button"
-                      aria-pressed="true"
-                    >
-                      Başlık Format
-                    </a>
-                  </div>
-                </div>
-                <div class="row g-3 mb-4">
-                  <div class="col">
-                    <a
-                      href="/text-processing"
-                      class="btn btn-secondary btn-lg w-100"
-                      role="button"
-                      aria-pressed="true"
+                      onClick={reverseText}
                     >
                       Ters Çevir
-                    </a>
+                    </button>
                   </div>
                   <div class="col">
-                    <a
-                      href="/text-processing"
+                    <button
                       class="btn btn-secondary btn-lg w-100"
-                      role="button"
-                      aria-pressed="true"
+                      onClick={removeSpaces}
                     >
                       Boşluk Temizle
-                    </a>
+                    </button>
                   </div>
                   <div class="col">
-                    <a
-                      href="/text-processing"
+                    <button
                       class="btn btn-secondary btn-lg w-100"
-                      role="button"
-                      aria-pressed="true"
+                      onClick={copyText}
                     >
                       Metni Kopyala
-                    </a>
+                    </button>
                   </div>
                 </div>
                 <div class="row g-3">
-                    <div class="col">
-                    <a
-                      href="/text-processing"
+                  <div class="col">
+                    <button
                       class="btn btn-secondary btn-lg w-100"
-                      role="button"
-                      aria-pressed="true"
+                      onClick={getLoremIpsumText}
                     >
                       Lorem Ipsum
-                    </a>
+                    </button>
                   </div>
-                </div>
+                  <div class="col">
+                    <button
+                      class="btn btn-danger btn-lg w-100"
+                      onClick={cleanTextArea}
+                    >
+                      Temizle
+                    </button>
+                  </div>
+                </div>`
+                
               </div>
             </div>
           </div>
